@@ -47,22 +47,21 @@ yunohost service add "$app" --description="A short description of the app" --log
 yunohost service add "$app-web" --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 #=================================================
-# INSTALL ETHERPAD
+# INSTALL APP
 #=================================================
 ynh_script_progression "Installing $app..."
 
 pushd $install_dir/apps/server
-    ynh_hide_warnings pnpm install
-    ynh_hide_warnings pnpm dlx prisma generate
-    ynh_hide_warnings pnpm dlx prisma migrate deploy
-    ynh_hide_warnings pnpm db:seed
-    ynh_hide_warnings pnpm run build
+    ynh_hide_warnings ynh_exec_as_app pnpm install
+    ynh_hide_warnings ynh_exec_as_app pnpm dlx prisma generate
+    ynh_hide_warnings ynh_exec_as_app pnpm dlx prisma migrate deploy
+    ynh_hide_warnings ynh_exec_as_app pnpm db:seed
+    ynh_hide_warnings ynh_exec_as_app pnpm run build
 popd
 
-
 pushd $install_dir/apps/web
-    ynh_hide_warnings pnpm install
-    ynh_hide_warnings pnpm run build
+    ynh_hide_warnings ynh_exec_as_app pnpm install
+    ynh_hide_warnings ynh_exec_as_app pnpm run build
 popd
 
 #=================================================
