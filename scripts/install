@@ -50,8 +50,10 @@ ynh_config_add_nginx
 
 # Create a dedicated systemd config
 ynh_config_add_systemd
+ynh_config_add_systemd --service=$app-web --template=web.service
 
 yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add "$app-web" --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 #=================================================
 # INSTALL ETHERPAD
@@ -79,6 +81,7 @@ ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
 ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app-web" --action="start"
 
 #=================================================
 # END OF SCRIPT
