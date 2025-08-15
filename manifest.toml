@@ -14,9 +14,7 @@ maintainers = ["eric_G"]
 [upstream]
 license = "free"
 website = "https://palmr.kyantech.com.br/"
-demo = "https://demo.example.com"
 admindoc = "https://yunohost.org/packaging_apps"
-userdoc = "https://yunohost.org/apps"
 code = "https://github.com/kyantech/Palmr"
 
 
@@ -37,14 +35,7 @@ ram.runtime = "50M"
     [install.domain]
     type = "domain"
 
-    [install.path]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
-    type = "path"
-    default = "/example"
-
     [install.init_main_permission]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
-    # This won't be saved as setting and will instead be used to initialize the SSOwat permission
     type = "group"
     default = "visitors"
 
@@ -54,17 +45,6 @@ ram.runtime = "50M"
     type = "select"
     choices = ["fr", "en"]
     default = "fr"
-
-    [install.admin]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
-    type = "user"
-
-    [install.password]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
-    # Note that user-provided passwords questions are not automatically saved as setting
-    help.en = "Use the help field to add an information for the admin about this question."
-    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
-    type = "password"
 
 [resources]
 
@@ -80,15 +60,9 @@ ram.runtime = "50M"
 
     [resources.install_dir]
 
-    [resources.data_dir]
+    #[resources.data_dir]
 
     [resources.permissions]
     main.url = "/"
 
     [resources.ports]
-
-    [resources.apt]
-    packages = "mariadb-server, deb1, deb2, php8.3-foo, php8.3-bar"
-
-    [resources.database]
-    type = "mysql"
